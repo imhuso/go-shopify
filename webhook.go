@@ -80,7 +80,7 @@ func (s *WebhookServiceOp) Get(ctx context.Context, webhookdId uint64, options i
 
 // Create a new webhook
 func (s *WebhookServiceOp) Create(ctx context.Context, webhook Webhook) (*Webhook, error) {
-	path := fmt.Sprintf("%s.json", webhooksBasePath)
+	path := fmt.Sprintf("/api/%s/%s.json", s.client.apiVersion, webhooksBasePath)
 	wrappedData := WebhookResource{Webhook: &webhook}
 	resource := new(WebhookResource)
 	err := s.client.Post(ctx, path, wrappedData, resource)
